@@ -71,12 +71,12 @@ git clone https://github.com/Academia-programador-back-end-2024/bk-ap-gestao-equ
 
 #### Navegue até a pasta raiz da solução
 ```
-cd gestao-equipamentos-2024
+cd gestao-equipamentos
 ```
 
 #### Restaure as dependências
 ```
-dotnet restore
+dotnet restore .\GestaoEquipamentos.sln
 ```
 
 #### Navegue até a pasta do projeto
