@@ -4,6 +4,8 @@ Junior cuida do estoque de equipamentos na empresa onde trabalha. E sempre contr
 
 Desta forma, ele resolveu pedir ajuda do pessoal da Academia do Programador no desenvolvimento de um Software para automatizar o seu serviço.  
 
+![Gestao Equipamentos](gestao-equipamentos.gif)
+
 ## Autenticação
 
 Criar uma tela para solicitar login de usuario.
