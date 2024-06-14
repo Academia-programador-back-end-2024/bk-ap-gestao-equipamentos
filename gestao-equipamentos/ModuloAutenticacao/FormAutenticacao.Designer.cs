@@ -139,10 +139,10 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 6);
+            dataGridView1.Location = new Point(30, 235);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(172, 239);
+            dataGridView1.Size = new Size(154, 10);
             dataGridView1.TabIndex = 7;
             dataGridView1.Visible = false;
             // 

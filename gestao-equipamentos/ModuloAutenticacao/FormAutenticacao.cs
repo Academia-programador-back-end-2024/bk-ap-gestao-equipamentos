@@ -17,17 +17,20 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
             string login = txtLogin.Text;
             string senha = txtSenha.Text;
 
-            if (AutenticadorController.Autenticar(login, senha))
+            try
             {
-                Hide();
-                GestaoEquipamentosForm gestaoEquipamentosForm = new GestaoEquipamentosForm();
-                gestaoEquipamentosForm.ShowDialog(this);
+                if (AutenticadorController.Autenticar(login, senha))
+                {
+                    Hide();
+                    GestaoEquipamentosForm gestaoEquipamentosForm = new GestaoEquipamentosForm();
+                    gestaoEquipamentosForm.ShowDialog(this);
 
-                Close();
+                    Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                toolStripStatusLabelInfo.Text = "Credenciais inválidas!";
+                toolStripStatusLabelInfo.Text = ex.Message;
             }
 
         }

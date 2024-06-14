@@ -18,12 +18,19 @@
                 return true;
             }
 
-            return false;
+            throw new AuthenticationException("Usuário ou senha inválidos");
         }
 
         public List<Usuario> ObterUsuarios()
         {
             return RepositorioUsuario.ObterUsuarios();
+        }
+    }
+
+    public class AuthenticationException : Exception
+    {
+        public AuthenticationException(string message) : base(message)
+        {
         }
     }
 }
