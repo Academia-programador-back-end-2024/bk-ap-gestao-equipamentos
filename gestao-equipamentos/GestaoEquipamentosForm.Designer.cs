@@ -36,6 +36,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Name = "GestaoEquipamentosForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestao Equipamentos";
             ResumeLayout(false);
         }
