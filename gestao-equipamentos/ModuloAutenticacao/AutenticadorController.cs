@@ -18,7 +18,7 @@
                 return true;
             }
 
-            throw new AuthenticationException("Usuário ou senha inválidos");
+            throw new AuthenticationException();
         }
 
         public List<Usuario> ObterUsuarios()
@@ -29,8 +29,9 @@
 
     public class AuthenticationException : Exception
     {
-        public AuthenticationException(string message) : base(message)
+        public AuthenticationException(string message = "Usuário ou senha inválidos") : base(message)
         {
+
         }
     }
 }

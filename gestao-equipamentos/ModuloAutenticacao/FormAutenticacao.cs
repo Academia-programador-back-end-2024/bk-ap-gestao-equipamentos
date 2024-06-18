@@ -2,14 +2,18 @@
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
 {
+    //VIEW
     public partial class FormAutenticacao : Form
     {
+        //Controllador
         AutenticadorController AutenticadorController { get; set; }
+
         public FormAutenticacao()
         {
             InitializeComponent();
             AutenticadorController = new AutenticadorController();
-            dataGridView1.DataSource = AutenticadorController.ObterUsuarios();
+
+            //dataGridView1.DataSource = AutenticadorController.ObterUsuarios();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
