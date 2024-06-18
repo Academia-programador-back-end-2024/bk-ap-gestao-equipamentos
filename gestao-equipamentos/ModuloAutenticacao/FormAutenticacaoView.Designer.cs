@@ -1,6 +1,6 @@
 ﻿namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
 {
-    partial class FormAutenticacao
+    partial class FormAutenticacaoView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAutenticacao));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAutenticacaoView));
             statusStrip1 = new StatusStrip();
             toolStripStatusLabelInfo = new ToolStripStatusLabel();
             pictureBox1 = new PictureBox();

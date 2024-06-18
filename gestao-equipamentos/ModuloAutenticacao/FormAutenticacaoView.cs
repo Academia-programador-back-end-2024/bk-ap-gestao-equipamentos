@@ -2,10 +2,10 @@
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
 {
-    public partial class FormAutenticacao : Form
+    public partial class FormAutenticacaoView : Form
     {
         AutenticadorController AutenticadorController { get; set; }
-        public FormAutenticacao()
+        public FormAutenticacaoView()
         {
             InitializeComponent();
             AutenticadorController = new AutenticadorController();

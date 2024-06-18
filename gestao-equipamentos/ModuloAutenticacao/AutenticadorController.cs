@@ -11,7 +11,7 @@
 
         public bool Autenticar(string login, string senha)
         {
-            Usuario? usuario = RepositorioUsuario.EncontreUsuarioPorLogin(login);
+            UsuarioModel? usuario = RepositorioUsuario.EncontreUsuarioPorLogin(login);
 
             if (usuario != null && usuario.Senha.Equals(senha))
             {
@@ -21,7 +21,7 @@
             throw new AuthenticationException("Usuário ou senha inválidos");
         }
 
-        public List<Usuario> ObterUsuarios()
+        public List<UsuarioModel> ObterUsuarios()
         {
             return RepositorioUsuario.ObterUsuarios();
         }

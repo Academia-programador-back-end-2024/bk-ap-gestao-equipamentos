@@ -4,30 +4,30 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
     //Faz o crud
     public class RepositorioUsuario
     {
-        private List<Usuario> Usuarios { get; set; }
+        private List<UsuarioModel> Usuarios { get; set; }
 
         public RepositorioUsuario()
         {
-            Usuarios = new List<Usuario>();
+            Usuarios = new List<UsuarioModel>();
             Semear();
         }
 
-        public Usuario EncontreUsuarioPorLogin(string login)
+        public UsuarioModel EncontreUsuarioPorLogin(string login)
         {
             return Usuarios.Find(u => u.Login == login);
         }
 
-        public void CriarUsuario(Usuario usuario)
+        public void CriarUsuario(UsuarioModel usuario)
         {
             Usuarios.Add(usuario);
         }
 
         private void Semear()
         {
-            Usuarios.Add(new Usuario { Login = "admin", Senha = "admin" });
+            Usuarios.Add(new UsuarioModel { Login = "admin", Senha = "admin" });
         }
 
-        public List<Usuario> ObterUsuarios()
+        public List<UsuarioModel> ObterUsuarios()
         {
             return Usuarios;
         }

@@ -1,6 +1,6 @@
 ﻿namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
 {
-    public class Usuario
+    public class UsuarioModel
     {
         public string Login { get; set; }
         public string Senha { get; set; }
