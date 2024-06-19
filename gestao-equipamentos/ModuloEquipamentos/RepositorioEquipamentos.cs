@@ -2,11 +2,10 @@
 {
     public class RepositorioEquipamentos
     {
-        private List<EquipamentoModel> _equipamentos { get; set; }
+        private static List<EquipamentoModel> _equipamentos { get; set; } = new List<EquipamentoModel>();
 
         public RepositorioEquipamentos()
         {
-            _equipamentos = new List<EquipamentoModel>();
             Semear();
         }
 
