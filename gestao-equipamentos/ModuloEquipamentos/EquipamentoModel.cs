@@ -9,5 +9,17 @@
         public DateTime DataDeFabricacao { get; set; }
         public string Fabricante { get; set; }
         public DateTime DataUltimaManutencao { get; set; }
+
+        public string Validar()
+        {
+            string error = string.Empty;
+
+            if (Nome == string.Empty || Nome.Length < 6)
+            {
+                error += "Nome inválido deve ter no minimo 6 caracteres";
+            }
+
+            return error;
+        }
     }
 }

@@ -104,7 +104,7 @@
             // 
             txtSenha.Location = new Point(263, 103);
             txtSenha.Name = "txtSenha";
-            txtSenha.PasswordChar = '*';
+            txtSenha.PasswordChar = '?';
             txtSenha.Size = new Size(306, 23);
             txtSenha.TabIndex = 5;
             txtSenha.UseSystemPasswordChar = true;
@@ -146,7 +146,7 @@
             dataGridView1.TabIndex = 7;
             dataGridView1.Visible = false;
             // 
-            // FormAutenticacao
+            // FormAutenticacaoView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -157,7 +157,7 @@
             Controls.Add(statusStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "FormAutenticacao";
+            Name = "FormAutenticacaoView";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestão Equipamentos - Autenticação";

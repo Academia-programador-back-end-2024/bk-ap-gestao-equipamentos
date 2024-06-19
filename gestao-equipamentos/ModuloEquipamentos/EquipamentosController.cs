@@ -15,5 +15,19 @@
 
             return _repositorioEquipamentos.ObterEquipamentos();
         }
+
+        public void AdicionarEquipamento()
+        {
+            FormEquipamento formEquipamento = new FormEquipamento();
+            formEquipamento.ShowDialog();
+
+            //Validar as regras de adição
+            EquipamentoModel equipamento = formEquipamento.EquipamentoModel;
+
+
+
+            _repositorioEquipamentos.AdicionarEquipamento(equipamento);
+
+        }
     }
 }

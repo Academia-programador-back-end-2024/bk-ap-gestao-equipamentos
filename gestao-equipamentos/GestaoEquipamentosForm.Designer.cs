@@ -51,6 +51,7 @@
             adicionarToolStripMenuItem.Name = "adicionarToolStripMenuItem";
             adicionarToolStripMenuItem.Size = new Size(70, 20);
             adicionarToolStripMenuItem.Text = "Adicionar";
+            adicionarToolStripMenuItem.Click += adicionarToolStripMenuItem_Click;
             // 
             // editarToolStripMenuItem
             // 

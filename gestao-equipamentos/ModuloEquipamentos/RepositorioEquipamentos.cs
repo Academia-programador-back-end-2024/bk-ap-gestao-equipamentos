@@ -39,5 +39,10 @@
         {
             return _equipamentos;
         }
+
+        public void AdicionarEquipamento(EquipamentoModel equipamento)
+        {
+            _equipamentos.Add(equipamento);
+        }
     }
 }

@@ -4,12 +4,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
     //Faz o crud
     public class RepositorioUsuario
     {
-<<<<<<< HEAD
         private List<UsuarioModel> Usuarios { get; set; }
-=======
-        private List<Usuario> Usuarios { get; set; }
-        // Usuario[]
->>>>>>> 29bcd8ca552f1751a45775a739e4fdb39a17cb3e
 
         public RepositorioUsuario()
         {
@@ -21,7 +16,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
         {
             for (int i = 0; i < Usuarios.Count; i++)
             {
-                Usuario u = Usuarios[i];
+                UsuarioModel u = Usuarios[i];
                 if (u.Login == login)
                 {
                     return u;
@@ -42,17 +37,13 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
 
         private void Semear()
         {
-<<<<<<< HEAD
-            Usuarios.Add(new UsuarioModel { Login = "admin", Senha = "admin" });
-=======
             Usuarios.Add(
-                    new Usuario
+                    new UsuarioModel
                     {
                         Login = "admin",
                         Senha = "admin",
                         IsAdmin = true
                     });
->>>>>>> 29bcd8ca552f1751a45775a739e4fdb39a17cb3e
         }
 
         public List<UsuarioModel> ObterUsuarios()

@@ -9,10 +9,13 @@ namespace WinFormsApp1
         {
             InitializeComponent();
             equipamentosController = new EquipamentosController();
-
             this.dataGridView1.DataSource = equipamentosController.ObterEquipamentos();
+        }
 
-
+        private void adicionarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            equipamentosController.AdicionarEquipamento();
+            this.dataGridView1.DataSource = equipamentosController.ObterEquipamentos();
         }
     }
 }
