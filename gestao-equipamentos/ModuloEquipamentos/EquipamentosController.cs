@@ -18,15 +18,30 @@
 
         public void AdicionarEquipamento()
         {
+            string resultado = string.Empty;
             FormEquipamento formEquipamento = new FormEquipamento();
-            formEquipamento.ShowDialog();
+            // Laço para garantir que o formulário será reaberto em caso de erros de validação
+            do
+            {
+                formEquipamento.ExibirMensagemErro(resultado);
+                if (formEquipamento.ShowDialog() == DialogResult.OK)
+                {
+                    EquipamentoModel equipamento = formEquipamento.EquipamentoModel;
+                    resultado = equipamento.Validar();
 
-            //Validar as regras de adição
-            EquipamentoModel equipamento = formEquipamento.EquipamentoModel;
+                    // Se não houver erros de validação, adicionar o equipamento
+                    if (string.IsNullOrEmpty(resultado))
+                    {
+                        _repositorioEquipamentos.AdicionarEquipamento(equipamento);
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
 
-
-
-            _repositorioEquipamentos.AdicionarEquipamento(equipamento);
+            } while (!string.IsNullOrEmpty(resultado));
 
         }
     }

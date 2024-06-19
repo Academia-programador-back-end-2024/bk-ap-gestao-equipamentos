@@ -25,14 +25,14 @@
             EquipamentoModel.DataDeFabricacao = dateTimePickerFabricacao.Value;
             EquipamentoModel.Numero = int.Parse(txtNumero.Text);
             EquipamentoModel.NumeroDeSerie = txtNumeroSerie.Text;
-
-            string resultado = EquipamentoModel.Validar();
-            if (resultado.Length > 0)
-            {
-                toolStripStatusLabelErros.Text = resultado;
-                return;
-            }
+            this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        internal void ExibirMensagemErro(string resultado)
+        {
+            toolStripStatusLabelErros.Text = resultado;
+            this.DialogResult = DialogResult.Abort;
         }
     }
 }

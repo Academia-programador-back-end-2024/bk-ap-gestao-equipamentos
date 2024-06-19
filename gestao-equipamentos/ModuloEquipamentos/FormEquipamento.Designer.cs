@@ -213,7 +213,10 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblNumero);
+            MaximizeBox = false;
             Name = "FormEquipamento";
+            SizeGripStyle = SizeGripStyle.Hide;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormEquipamento";
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
