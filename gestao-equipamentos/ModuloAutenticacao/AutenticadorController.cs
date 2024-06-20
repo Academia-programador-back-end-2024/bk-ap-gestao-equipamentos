@@ -11,7 +11,19 @@
 
         public bool Autenticar(string login, string senha)
         {
-            UsuarioModel? usuario = RepositorioUsuario.EncontreUsuarioPorLogin(login);
+
+            UsuarioModel? usuario = new UsuarioModel()
+            {
+                Login = login,
+                Senha = senha
+            };
+
+            if (usuario.Validar() != String.Empty)
+            {
+                return false;
+            }
+
+            usuario = RepositorioUsuario.EncontreUsuarioPorLogin(login);
 
             if (usuario != null && usuario.Senha.Equals(senha))
             {

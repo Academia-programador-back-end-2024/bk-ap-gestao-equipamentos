@@ -2,31 +2,71 @@
 {
     public partial class FormEquipamento : Form
     {
-        public EquipamentoModel EquipamentoModel { get; set; }
+        private EquipamentoModel _equipamentoModel { get; set; }
+        private IAdicionarEquipamento _adicionarEquipamento { get; set; }
+        private IAtualizarEquipamento _atualizarEquipamento { get; set; }
 
-        public FormEquipamento()
+
+        public FormEquipamento(
+            IAdicionarEquipamento equipamentoControllerBase,
+            IAtualizarEquipamento atualizarEquipamento,
+            EquipamentoModel equipamentoModel)
         {
             InitializeComponent();
-            EquipamentoModel = new EquipamentoModel();
+            if (equipamentoModel != null)
+            {
+                _equipamentoModel = equipamentoModel;
+
+                txtFabricante.Text = _equipamentoModel.Fabricante;
+                txtNome.Text = _equipamentoModel.Nome;
+                txtPreco.Text = _equipamentoModel.Preco.ToString();
+                dateTimePickermanutencao.Value = _equipamentoModel.DataUltimaManutencao;
+                dateTimePickerFabricacao.Value = _equipamentoModel.DataDeFabricacao;
+                txtNumero.Text = _equipamentoModel.Numero.ToString();
+                txtNumeroSerie.Text = _equipamentoModel.NumeroDeSerie;
+                btnSalvar.Text = "Atualizar";
+            }
+            else
+            {
+                _equipamentoModel = new EquipamentoModel();
+                btnSalvar.Text = "Adicionar";
+            }
             toolStripStatusLabelErros.Text = "";
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
+            _adicionarEquipamento = equipamentoControllerBase;
+            _atualizarEquipamento = atualizarEquipamento;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            EquipamentoModel.Fabricante = txtFabricante.Text;
-            EquipamentoModel.Nome = txtNome.Text;
-            EquipamentoModel.Preco = decimal.Parse(txtPreco.Text);
-            EquipamentoModel.DataUltimaManutencao = dateTimePickermanutencao.Value;
-            EquipamentoModel.DataDeFabricacao = dateTimePickerFabricacao.Value;
-            EquipamentoModel.Numero = int.Parse(txtNumero.Text);
-            EquipamentoModel.NumeroDeSerie = txtNumeroSerie.Text;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            try
+            {
+                _equipamentoModel.Fabricante = txtFabricante.Text;
+                _equipamentoModel.Nome = txtNome.Text;
+                _equipamentoModel.Preco = decimal.Parse(txtPreco.Text);
+                _equipamentoModel.DataUltimaManutencao = dateTimePickermanutencao.Value;
+                _equipamentoModel.DataDeFabricacao = dateTimePickerFabricacao.Value;
+                _equipamentoModel.Numero = int.Parse(txtNumero.Text);
+                _equipamentoModel.NumeroDeSerie = txtNumeroSerie.Text;
+                if (_equipamentoModel.Indice == -1)
+                {
+                    _adicionarEquipamento.AdicionarEquipamento(_equipamentoModel);
+                }
+                else
+                {
+                    _atualizarEquipamento.AtualizarEquipamento(_equipamentoModel);
+                }
+                //Se deu certo
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (AdicionarEquipamentoException ax)
+            {
+                ExibirMensagemErro(ax.Message);
+            }
+            catch
+            {
+                ExibirMensagemErro("Preencha todos os campos corretamente");
+            }
         }
 
         internal void ExibirMensagemErro(string resultado)

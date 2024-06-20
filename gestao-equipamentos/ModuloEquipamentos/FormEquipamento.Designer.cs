@@ -190,7 +190,6 @@
             toolStripStatusLabelErros.Name = "toolStripStatusLabelErros";
             toolStripStatusLabelErros.Size = new Size(36, 17);
             toolStripStatusLabelErros.Text = "Erros:";
-            toolStripStatusLabelErros.Click += toolStripStatusLabel1_Click;
             // 
             // FormEquipamento
             // 

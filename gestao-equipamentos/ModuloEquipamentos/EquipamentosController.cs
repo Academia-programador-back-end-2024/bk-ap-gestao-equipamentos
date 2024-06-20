@@ -1,13 +1,31 @@
 ﻿namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
-    public class EquipamentosController
+    public interface IAdicionarEquipamento
+    {
+        public abstract void AdicionarEquipamento(EquipamentoModel equipamento);
+    }
+
+    public interface IAtualizarEquipamento
+    {
+        void AtualizarEquipamento(EquipamentoModel equipamento);
+    }
+
+    public abstract class BaseController
     {
         public RepositorioEquipamentos _repositorioEquipamentos { get; set; }
+    }
+
+    public class EquipamentosController :
+        BaseController,
+        IAdicionarEquipamento,
+        IAtualizarEquipamento
+    {
         public EquipamentosController()
         {
             _repositorioEquipamentos = new RepositorioEquipamentos();
         }
 
+        //Read
         public List<EquipamentoModel> ObterEquipamentos()
         {
             //Página
@@ -16,33 +34,48 @@
             return _repositorioEquipamentos.ObterEquipamentos();
         }
 
-        public void AdicionarEquipamento()
+        //Pedir iteração do usuario
+
+        //Retorono do model feito na iteração do usuario
+
+        //S - SRP, simple resposability principle
+        //OLID
+        //I IOC
+
+        public void MostrarViewFormEquipamento(EquipamentoModel model = null)
         {
-            string resultado = string.Empty;
-            FormEquipamento formEquipamento = new FormEquipamento();
-            // Laço para garantir que o formulário será reaberto em caso de erros de validação
-            do
+            FormEquipamento formEquipamento = new FormEquipamento(this, this, model);
+            formEquipamento.ShowDialog();
+        }
+
+        //Create - Update
+        public void AdicionarEquipamento(EquipamentoModel equipamento)
+        {
+            var resultado = equipamento.Validar();
+            if (string.IsNullOrEmpty(resultado))
             {
-                formEquipamento.ExibirMensagemErro(resultado);
-                if (formEquipamento.ShowDialog() == DialogResult.OK)
-                {
-                    EquipamentoModel equipamento = formEquipamento.EquipamentoModel;
-                    resultado = equipamento.Validar();
+                _repositorioEquipamentos.AdicionarEquipamento(equipamento);
+                return;
+            }
+            throw new AdicionarEquipamentoException(resultado);
+        }
 
-                    // Se não houver erros de validação, adicionar o equipamento
-                    if (string.IsNullOrEmpty(resultado))
-                    {
-                        _repositorioEquipamentos.AdicionarEquipamento(equipamento);
-                        break;
-                    }
-                }
-                else
-                {
-                    break;
-                }
+        public void AtualizarEquipamento(EquipamentoModel equipamento)
+        {
+            var resultado = equipamento.Validar();
+            if (string.IsNullOrEmpty(resultado))
+            {
+                _repositorioEquipamentos.AtualizarEquipamento(equipamento);
+                return;
+            }
+            throw new AdicionarEquipamentoException(resultado);
+        }
+    }
 
-            } while (!string.IsNullOrEmpty(resultado));
-
+    public class AdicionarEquipamentoException : Exception
+    {
+        public AdicionarEquipamentoException(string message) : base(message)
+        {
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
+﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+
+namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
-    public class EquipamentoModel
+    public class EquipamentoModel : BaseModel
     {
         public int Numero { get; set; }
         public string Nome { get; set; }
@@ -10,8 +12,9 @@
         public string Fabricante { get; set; }
         public DateTime DataUltimaManutencao { get; set; }
 
-        public string Validar()
+        public override string Validar()
         {
+            //TODO: Rever todas as regras.
             string error = string.Empty;
 
             if (Nome == string.Empty || Nome.Length < 6)
@@ -21,5 +24,6 @@
 
             return error;
         }
+
     }
 }
