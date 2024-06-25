@@ -13,6 +13,7 @@
     public abstract class BaseController
     {
         public RepositorioEquipamentos _repositorioEquipamentos { get; set; }
+        public UserControl UserControl { get; set; }
     }
 
     public class EquipamentosController :
@@ -23,6 +24,7 @@
         public EquipamentosController()
         {
             _repositorioEquipamentos = new RepositorioEquipamentos();
+            UserControl = new UserControlEquipamentos(this);
         }
 
         //Read
