@@ -65,6 +65,7 @@
             removerToolStripMenuItem.Name = "removerToolStripMenuItem";
             removerToolStripMenuItem.Size = new Size(66, 20);
             removerToolStripMenuItem.Text = "Remover";
+            removerToolStripMenuItem.Click += removerToolStripMenuItem_Click;
             // 
             // dataGridView1
             // 

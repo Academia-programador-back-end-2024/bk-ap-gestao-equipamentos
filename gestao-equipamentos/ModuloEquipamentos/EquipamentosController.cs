@@ -72,6 +72,21 @@
             }
             throw new AdicionarEquipamentoException(resultado);
         }
+
+        public void MostrarViewFormDeleteEquipamento(EquipamentoModel equipamentoModel)
+        {
+            var resultado =
+                MessageBox.
+                Show(
+                $"Você confirma a remoção do equipamento {equipamentoModel.Nome}",
+                "Remover equipamento",
+                MessageBoxButtons.YesNoCancel);
+
+            if (DialogResult.Yes == resultado)
+            {
+                _repositorioEquipamentos.ExcluirEquipamento(equipamentoModel);
+            }
+        }
     }
 
     public class AdicionarEquipamentoException : Exception

@@ -32,5 +32,10 @@ namespace WinFormsApp1
                 AtualizarGrid();
             }
         }
+
+        private void removerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
