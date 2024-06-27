@@ -17,9 +17,14 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
             //TODO: Rever todas as regras.
             string error = string.Empty;
 
-            if (Nome == string.Empty || Nome.Length < 6)
+            if (string.IsNullOrEmpty(Nome) || Nome.Length < 6)
             {
-                error += "Nome inválido deve ter no minimo 6 caracteres";
+                error += "Nome inválido deve ter no minimo 6 caracteres.";
+            }
+
+            if (string.IsNullOrEmpty(NumeroDeSerie))
+            {
+                error += "Número de série é obrigatorio.";
             }
 
             return error;

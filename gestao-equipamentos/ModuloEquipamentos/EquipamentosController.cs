@@ -1,4 +1,6 @@
-﻿namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
+﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+
+namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
     public interface IAdicionarEquipamento
     {
@@ -10,21 +12,16 @@
         void AtualizarEquipamento(EquipamentoModel equipamento);
     }
 
-    public abstract class BaseController
-    {
-        public RepositorioEquipamentos _repositorioEquipamentos { get; set; }
-        public UserControl UserControl { get; set; }
-    }
-
     public class EquipamentosController :
         BaseController,
         IAdicionarEquipamento,
         IAtualizarEquipamento
     {
+        private RepositorioEquipamentos _repositorioEquipamentos { get; set; }
         public EquipamentosController()
         {
             _repositorioEquipamentos = new RepositorioEquipamentos();
-            UserControl = new UserControlEquipamentos(this);
+            View = new UserControlEquipamentos(this);
         }
 
         //Read
@@ -33,7 +30,7 @@
             //Página
             //Entende o contexto do usuario
 
-            return _repositorioEquipamentos.ObterEquipamentos();
+            return _repositorioEquipamentos.ObterTodos();
         }
 
         //Pedir iteração do usuario
@@ -56,7 +53,7 @@
             var resultado = equipamento.Validar();
             if (string.IsNullOrEmpty(resultado))
             {
-                _repositorioEquipamentos.AdicionarEquipamento(equipamento);
+                _repositorioEquipamentos.Adicionar(equipamento);
                 return;
             }
             throw new AdicionarEquipamentoException(resultado);
@@ -67,7 +64,7 @@
             var resultado = equipamento.Validar();
             if (string.IsNullOrEmpty(resultado))
             {
-                _repositorioEquipamentos.AtualizarEquipamento(equipamento);
+                _repositorioEquipamentos.Atualizar(equipamento);
                 return;
             }
             throw new AdicionarEquipamentoException(resultado);
@@ -84,7 +81,7 @@
 
             if (DialogResult.Yes == resultado)
             {
-                _repositorioEquipamentos.ExcluirEquipamento(equipamentoModel);
+                _repositorioEquipamentos.Excluir(equipamentoModel);
             }
         }
     }
