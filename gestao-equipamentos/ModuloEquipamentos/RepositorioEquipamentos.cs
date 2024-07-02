@@ -48,23 +48,5 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
             });
         }
 
-        public List<EquipamentoModel> ObterTodos()
-        {
-            return ItensRepositorio;
-        }
-
-        public void Atualizar(EquipamentoModel equipamento)
-        {
-            ItensRepositorio[equipamento.Indice] = equipamento;
-        }
-
-        public override void Excluir(EquipamentoModel equipamento)
-        {
-            base.Excluir(equipamento);
-            for (int i = 0; i < ItensRepositorio.Count; i++)
-            {
-                ItensRepositorio[i].Indice = i;
-            }
-        }
     }
 }

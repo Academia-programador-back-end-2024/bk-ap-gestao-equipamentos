@@ -22,25 +22,5 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
             });
         }
 
-        public List<TipoDeEquipamentoModel> ObterTodos()
-        {
-            return ItensRepositorio;
-        }
-
-
-        public void Atualizar(TipoDeEquipamentoModel tipodeDeEquipamento)
-        {
-            ItensRepositorio[tipodeDeEquipamento.Indice] = tipodeDeEquipamento;
-        }
-
-        public override void Excluir(TipoDeEquipamentoModel tipoDeEquipamento)
-        {
-            Excluir(tipoDeEquipamento);
-            for (int i = 0; i < ItensRepositorio.Count; i++)
-            {
-                ItensRepositorio[i].Indice = i;
-            }
-        }
-
     }
 }
