@@ -36,6 +36,7 @@
             splitContainer1 = new SplitContainer();
             flowLayoutPanel1 = new FlowLayoutPanel();
             buttonEquipamentos = new Button();
+            btnTipo = new Button();
             panelListControl = new Panel();
             tableLayoutPanel1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -83,8 +84,9 @@
             // 
             equipamentosToolStripMenuItem.Image = (Image)resources.GetObject("equipamentosToolStripMenuItem.Image");
             equipamentosToolStripMenuItem.Name = "equipamentosToolStripMenuItem";
-            equipamentosToolStripMenuItem.Size = new Size(150, 22);
+            equipamentosToolStripMenuItem.Size = new Size(180, 22);
             equipamentosToolStripMenuItem.Text = "Equipamentos";
+            equipamentosToolStripMenuItem.Click += equipamentosToolStripMenuItem_Click;
             // 
             // splitContainer1
             // 
@@ -106,6 +108,7 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Controls.Add(buttonEquipamentos);
+            flowLayoutPanel1.Controls.Add(btnTipo);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(0, 0);
@@ -125,6 +128,19 @@
             buttonEquipamentos.TextAlign = ContentAlignment.MiddleRight;
             buttonEquipamentos.UseVisualStyleBackColor = true;
             buttonEquipamentos.Click += buttonEquipamentos_Click;
+            // 
+            // btnTipo
+            // 
+            btnTipo.Image = (Image)resources.GetObject("btnTipo.Image");
+            btnTipo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTipo.Location = new Point(3, 85);
+            btnTipo.Name = "btnTipo";
+            btnTipo.Size = new Size(163, 76);
+            btnTipo.TabIndex = 1;
+            btnTipo.Text = "Tipo";
+            btnTipo.TextAlign = ContentAlignment.MiddleRight;
+            btnTipo.UseVisualStyleBackColor = true;
+            btnTipo.Click += btnTipo_Click;
             // 
             // panelListControl
             // 
@@ -168,5 +184,6 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Button buttonEquipamentos;
         private Panel panelListControl;
+        private Button btnTipo;
     }
 }

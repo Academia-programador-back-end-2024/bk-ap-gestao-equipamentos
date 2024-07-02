@@ -12,8 +12,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
         void AtualizarEquipamento(EquipamentoModel equipamento);
     }
 
-    public class EquipamentosController :
-        BaseController,
+    public class EquipamentosController : BaseController,
         IAdicionarEquipamento,
         IAtualizarEquipamento
     {

@@ -2,9 +2,9 @@
 {
     public abstract class BaseRepositorio<T> where T : BaseModel
     {
-        public List<T> ItensRepositorio { get; set; }
+        protected List<T> ItensRepositorio { get; set; }
 
-        public T BaseModel { get; set; }
+        private T BaseModel { get; set; }
 
         protected BaseRepositorio()
         {

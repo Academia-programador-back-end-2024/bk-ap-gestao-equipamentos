@@ -1,6 +1,4 @@
-﻿using WinFormsApp1;
-
-namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
+﻿namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
 {
     public partial class FormAutenticacaoView : Form
     {
@@ -26,7 +24,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloAutenticacao
                 if (AutenticadorController.Autenticar(login, senha))
                 {
                     Hide();
-                    GestaoEquipamentosForm gestaoEquipamentosForm = new GestaoEquipamentosForm();
+                    TelaPrincipalForm gestaoEquipamentosForm = new TelaPrincipalForm();
                     gestaoEquipamentosForm.ShowDialog(this);
 
                     Close();
