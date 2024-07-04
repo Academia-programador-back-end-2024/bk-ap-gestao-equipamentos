@@ -84,7 +84,7 @@
             // 
             equipamentosToolStripMenuItem.Image = (Image)resources.GetObject("equipamentosToolStripMenuItem.Image");
             equipamentosToolStripMenuItem.Name = "equipamentosToolStripMenuItem";
-            equipamentosToolStripMenuItem.Size = new Size(180, 22);
+            equipamentosToolStripMenuItem.Size = new Size(150, 22);
             equipamentosToolStripMenuItem.Text = "Equipamentos";
             equipamentosToolStripMenuItem.Click += equipamentosToolStripMenuItem_Click;
             // 
@@ -162,6 +162,7 @@
             Name = "TelaPrincipalForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaPrincipalForm";
+            FormClosing += TelaPrincipalForm_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             menuStrip1.ResumeLayout(false);

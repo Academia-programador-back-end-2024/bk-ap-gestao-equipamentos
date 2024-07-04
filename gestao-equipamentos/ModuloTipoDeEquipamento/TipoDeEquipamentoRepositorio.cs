@@ -1,11 +1,35 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+using System.Text.Json;
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 {
     public class TipoDeEquipamentoRepositorio : BaseRepositorio<TipoDeEquipamentoModel>
     {
+        const string nomeArquivoTipos = "tipos-de-equipamento.json";
+        const string diretorioTipo = "tipo";
+        public TipoDeEquipamentoRepositorio() : base()
+        {
+            if (File.Exists(nomeArquivoTipos))
+            {
+                string conteudoArquivoTipos = File.ReadAllText(nomeArquivoTipos);
+                ItensRepositorio =
+                    JsonSerializer.Deserialize<List<TipoDeEquipamentoModel>>
+                    (conteudoArquivoTipos);
+            }
+        }
+
+        ~TipoDeEquipamentoRepositorio()
+        {
+            EscreverModelsEmArquivo();
+        }
+
         public override void Semear()
         {
+            if (File.Exists(nomeArquivoTipos))
+            {
+                return;
+            }
+
             ItensRepositorio.Add(new TipoDeEquipamentoModel()
             {
                 Indice = Indice(),
@@ -28,6 +52,17 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
                 Componentes = "Processador, Memoria, Bateria, Disco Rigido",
                 Descricao = "S23, snapdragon 751, 8gb, 4200, 512 HD"
             });
+
+            EscreverModelsEmArquivo();
+        }
+
+        private void EscreverModelsEmArquivo()
+        {
+            string conteudoArquivoTipos =
+                JsonSerializer.Serialize<List<TipoDeEquipamentoModel>>
+                (ItensRepositorio);
+
+            File.WriteAllText(nomeArquivoTipos, conteudoArquivoTipos);
         }
 
         public TipoDeEquipamentoModel BusquePorNome(string nome)
@@ -40,6 +75,12 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
                 }
             }
             return null;
+        }
+
+        public override void Adicionar(TipoDeEquipamentoModel objeto)
+        {
+            base.Adicionar(objeto);
+            EscreverModelsEmArquivo();
         }
     }
 }

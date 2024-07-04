@@ -41,5 +41,11 @@ namespace GestaoEquipamentos.WinFormsApp
             this.panelListControl.Controls.Clear();
             this.panelListControl.Controls.Add(tipoDeEquipamentoController.View);
         }
+
+        private void TelaPrincipalForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GC.Collect();
+        }
+
     }
 }

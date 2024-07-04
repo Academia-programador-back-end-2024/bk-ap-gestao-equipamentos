@@ -29,7 +29,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
         public void MostrarViewFormTiposDeEquipamento(TipoDeEquipamentoModel? tipoDeequipamentoModel = null)
         {
             FormTipoDeEquipamento formTipoDeEquipamento = new FormTipoDeEquipamento(tipoDeequipamentoModel, this);
-            formTipoDeEquipamento.Show();
+            formTipoDeEquipamento.ShowDialog();
         }
 
         public void AdicionarTipoDeEquipamento(TipoDeEquipamentoModel tipoDeEquipamento)
