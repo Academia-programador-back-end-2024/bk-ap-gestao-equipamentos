@@ -79,7 +79,7 @@ Requisito: Como funcionário, Junior quer ter a possibilidade de cadastrar e ger
 - Deve permitir cadastrar nome do tipo de equipamento.
 - Deve permitir adicionar componentes como processador, suprimento e custo de aluguel do equipamento.
 - Deve permitir adicionar descrição detalhada, especificações técnicas e categoria.
-- Não deve permitir o cadastro de dados repetidos.
+- Não deve permitir o cadastro de dados repetidos, pelo nome.
 
 #### 2.2 READ
 - Deve permitir visualizar todos os tipos de equipamentos cadastrados.

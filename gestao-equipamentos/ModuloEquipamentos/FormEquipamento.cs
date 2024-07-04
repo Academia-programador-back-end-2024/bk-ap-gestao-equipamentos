@@ -74,5 +74,10 @@
             toolStripStatusLabelErros.Text = resultado;
             this.DialogResult = DialogResult.Abort;
         }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

@@ -30,5 +30,16 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
             });
         }
 
+        public TipoDeEquipamentoModel BusquePorNome(string nome)
+        {
+            foreach (TipoDeEquipamentoModel tipoDeEquipamento in ItensRepositorio)
+            {
+                if (tipoDeEquipamento.Equals(nome))
+                {
+                    return tipoDeEquipamento;
+                }
+            }
+            return null;
+        }
     }
 }

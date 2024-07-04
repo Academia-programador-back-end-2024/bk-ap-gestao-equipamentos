@@ -183,6 +183,7 @@
             statusStrip1.Size = new Size(433, 22);
             statusStrip1.TabIndex = 15;
             statusStrip1.Text = "statusStrip1";
+            statusStrip1.ItemClicked += statusStrip1_ItemClicked;
             // 
             // toolStripStatusLabelErros
             // 

@@ -1,5 +1,6 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
 
+
 namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 {
     public class TipoDeEquipamentoModel : BaseModel
@@ -10,7 +11,24 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 
         public override string Validar()
         {
-            return string.Empty;
+            string error = string.Empty;
+
+            if (string.IsNullOrEmpty(Nome))
+            {
+                error += "Nome é obrigatorio.";
+            }
+
+            if (string.IsNullOrEmpty(Componentes))
+            {
+                error += "Componentes é obrigatorio.";
+            }
+
+            if (string.IsNullOrEmpty(Descricao))
+            {
+                error += "Descrição é obrigatorio.";
+            }
+
+            return error;
         }
 
         public override string ToString()
