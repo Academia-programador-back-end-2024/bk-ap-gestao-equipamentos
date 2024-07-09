@@ -1,4 +1,5 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+using GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento;
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
@@ -12,9 +13,11 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
         IAtualizarEquipamento
     {
         private RepositorioEquipamentos _repositorioEquipamentos { get; set; }
-        public EquipamentosController()
+        private TipoDeEquipamentoRepositorio _tipoDeEquipamentoRepositorio { get; set; }
+        public EquipamentosController(TipoDeEquipamentoRepositorio tipoDeEquipamentoRepositorio)
         {
             _repositorioEquipamentos = new RepositorioEquipamentos();
+            _tipoDeEquipamentoRepositorio = tipoDeEquipamentoRepositorio;
             View = new UserControlEquipamentos(this);
         }
 
@@ -37,7 +40,12 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 
         public void MostrarViewFormEquipamento(EquipamentoModel model = null)
         {
-            FormEquipamento formEquipamento = new FormEquipamento(this, this, model);
+            FormEquipamento formEquipamento =
+                new FormEquipamento(
+                    this,
+                    this,
+                    _tipoDeEquipamentoRepositorio.ObterTodos(),
+                    model);
             formEquipamento.ShowDialog();
         }
 

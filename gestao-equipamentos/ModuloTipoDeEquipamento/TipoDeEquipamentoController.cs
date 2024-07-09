@@ -6,9 +6,9 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
         IAdicionar<TipoDeEquipamentoModel>
     {
         private TipoDeEquipamentoRepositorio _tipoDeEquipamentoRepositorio { get; set; }
-        public TipoDeEquipamentoController()
+        public TipoDeEquipamentoController(TipoDeEquipamentoRepositorio tipoDeEquipamentoRepositorio)
         {
-            _tipoDeEquipamentoRepositorio = new TipoDeEquipamentoRepositorio();
+            _tipoDeEquipamentoRepositorio = tipoDeEquipamentoRepositorio;
             this.View = new TipodeEquipamentoView(this);
         }
 

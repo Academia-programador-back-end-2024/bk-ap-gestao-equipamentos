@@ -1,4 +1,5 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+using GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento;
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
@@ -11,6 +12,9 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
         public DateTime DataDeFabricacao { get; set; }
         public string Fabricante { get; set; }
         public DateTime DataUltimaManutencao { get; set; }
+
+        //public int IndiceTipoDeEquipamento { get; set; }
+        public virtual TipoDeEquipamentoModel TipoDeEquipamento { get; set; }
 
         public override string Validar()
         {

@@ -5,14 +5,17 @@ namespace GestaoEquipamentos.WinFormsApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        private EquipamentosController equipamentosController;
-        private TipoDeEquipamentoController tipoDeEquipamentoController;
+        private EquipamentosController equipamentosController { get; set; }
+        private TipoDeEquipamentoController tipoDeEquipamentoController { get; set; }
+
+        private TipoDeEquipamentoRepositorio _tipoDeEquipamentoRepositorio { get; set; }
 
         public TelaPrincipalForm()
         {
             InitializeComponent();
-            equipamentosController = new EquipamentosController();
-            tipoDeEquipamentoController = new TipoDeEquipamentoController();
+            _tipoDeEquipamentoRepositorio = new TipoDeEquipamentoRepositorio();
+            equipamentosController = new EquipamentosController(_tipoDeEquipamentoRepositorio);
+            tipoDeEquipamentoController = new TipoDeEquipamentoController(_tipoDeEquipamentoRepositorio);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)

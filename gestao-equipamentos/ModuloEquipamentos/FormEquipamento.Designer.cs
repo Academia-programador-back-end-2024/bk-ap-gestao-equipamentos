@@ -45,6 +45,8 @@
             btnSalvar = new Button();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabelErros = new ToolStripStatusLabel();
+            label7 = new Label();
+            cmbTipoDeEquipamentos = new ComboBox();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -167,7 +169,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(344, 222);
+            btnSalvar.Location = new Point(346, 256);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(75, 23);
             btnSalvar.TabIndex = 14;
@@ -178,7 +180,7 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelErros });
-            statusStrip1.Location = new Point(0, 250);
+            statusStrip1.Location = new Point(0, 282);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(433, 22);
             statusStrip1.TabIndex = 15;
@@ -192,11 +194,30 @@
             toolStripStatusLabelErros.Size = new Size(36, 17);
             toolStripStatusLabelErros.Text = "Erros:";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(15, 216);
+            label7.Name = "label7";
+            label7.Size = new Size(120, 15);
+            label7.TabIndex = 16;
+            label7.Text = "Tipo de Equipamento";
+            // 
+            // cmbTipoDeEquipamentos
+            // 
+            cmbTipoDeEquipamentos.FormattingEnabled = true;
+            cmbTipoDeEquipamentos.Location = new Point(165, 213);
+            cmbTipoDeEquipamentos.Name = "cmbTipoDeEquipamentos";
+            cmbTipoDeEquipamentos.Size = new Size(254, 23);
+            cmbTipoDeEquipamentos.TabIndex = 17;
+            // 
             // FormEquipamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(433, 272);
+            ClientSize = new Size(433, 304);
+            Controls.Add(cmbTipoDeEquipamentos);
+            Controls.Add(label7);
             Controls.Add(statusStrip1);
             Controls.Add(btnSalvar);
             Controls.Add(txtPreco);
@@ -243,5 +264,7 @@
         private Button btnSalvar;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabelErros;
+        private Label label7;
+        private ComboBox cmbTipoDeEquipamentos;
     }
 }
