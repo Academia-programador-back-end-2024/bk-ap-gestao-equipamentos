@@ -7,6 +7,8 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
         TipoDeEquipamentoModel TipoDeEquipamentoModel { get; set; }
         TipoDeEquipamentoController TipoDeEquipamentoController { get; set; }
 
+        //ILogger<FormTipoDeEquipamento> Logger { get; set; }
+
         IAdicionar<TipoDeEquipamentoModel> _adicionar { get; set; }
         public FormTipoDeEquipamento(
             TipoDeEquipamentoModel tipoDeEquipamentoModel,

@@ -44,8 +44,9 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
             var resultado = tipoDeEquipamentoModel.Validar();
             if (string.IsNullOrEmpty(resultado))
             {
-                _tipoDeEquipamentoRepositorio.Adicionar(tipoDeEquipamentoModel);
-
+                resultado = Validar(tipoDeEquipamentoModel, resultado);
+                _tipoDeEquipamentoRepositorio.Atualizar(tipoDeEquipamentoModel);
+                return;
             }
             throw new AdicionarTipoDeEquipamentoException(resultado);
         }
@@ -55,17 +56,24 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
             var resultado = tipoDeEquipamento.Validar();
             if (string.IsNullOrEmpty(resultado))
             {
-                var tipoExistente = _tipoDeEquipamentoRepositorio.BusquePorNome(tipoDeEquipamento.Nome);
-
-                if (tipoExistente != null)
-                {
-                    resultado += "Já existe um tipo com este nome.";
-                    throw new AdicionarTipoDeEquipamentoException(resultado);
-                }
+                resultado = Validar(tipoDeEquipamento, resultado);
                 _tipoDeEquipamentoRepositorio.Adicionar(tipoDeEquipamento);
                 return;
             }
             throw new AdicionarTipoDeEquipamentoException(resultado);
+        }
+
+        private string Validar(TipoDeEquipamentoModel tipoDeEquipamento, string resultado)
+        {
+            var tipoExistente = _tipoDeEquipamentoRepositorio.BusquePorNome(tipoDeEquipamento.Nome);
+
+            if (tipoExistente != null)
+            {
+                resultado += "Já existe um tipo com este nome.";
+                throw new AdicionarTipoDeEquipamentoException(resultado);
+            }
+
+            return resultado;
         }
     }
 

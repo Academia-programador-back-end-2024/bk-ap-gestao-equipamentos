@@ -129,7 +129,9 @@
             Controls.Add(richTxtDescricao);
             Controls.Add(statusStrip1);
             Controls.Add(btnSalvar);
+            MaximizeBox = false;
             Name = "FormTipoDeEquipamento";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormTipoDeEquipamento";
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
