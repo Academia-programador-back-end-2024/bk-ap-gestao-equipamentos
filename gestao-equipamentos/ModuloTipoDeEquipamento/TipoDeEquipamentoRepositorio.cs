@@ -7,7 +7,25 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
     {
         const string nomeArquivoTipos = "tipos-de-equipamento.json";
         const string diretorioTipo = "tipo";
-        public TipoDeEquipamentoRepositorio() : base()
+
+        //Singleton.
+        //Padrão de projeto de criação
+        //Uma classe que é singleton, ela só pode ter uma instancia dela mesmo
+
+        private static TipoDeEquipamentoRepositorio TipoDeEquipamentoRepositorioSingleton { get; set; }
+        public static TipoDeEquipamentoRepositorio Instancia
+        {
+            get
+            {
+                if (TipoDeEquipamentoRepositorioSingleton == null)
+                {
+                    TipoDeEquipamentoRepositorioSingleton = new TipoDeEquipamentoRepositorio();
+                }
+                return TipoDeEquipamentoRepositorioSingleton;
+            }
+        }
+
+        private TipoDeEquipamentoRepositorio() : base()
         {
             if (File.Exists(nomeArquivoTipos))
             {

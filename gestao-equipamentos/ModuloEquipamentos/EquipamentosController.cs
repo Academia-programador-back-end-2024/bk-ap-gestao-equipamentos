@@ -21,6 +21,13 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
             View = new UserControlEquipamentos(this);
         }
 
+        public EquipamentosController()
+        {
+            _repositorioEquipamentos = new RepositorioEquipamentos();
+            _tipoDeEquipamentoRepositorio = TipoDeEquipamentoRepositorio.Instancia;
+            View = new UserControlEquipamentos(this);
+        }
+
         //Read
         public List<EquipamentoModel> ObterEquipamentos()
         {

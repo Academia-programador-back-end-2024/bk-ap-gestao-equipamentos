@@ -12,6 +12,12 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
             this.View = new TipodeEquipamentoView(this);
         }
 
+        public TipoDeEquipamentoController()
+        {
+            _tipoDeEquipamentoRepositorio = TipoDeEquipamentoRepositorio.Instancia;
+            this.View = new TipodeEquipamentoView(this);
+        }
+
         public void MostrarViewFormDeleteTipoDeEquipamento(TipoDeEquipamentoModel tipoDeequipamentoModel)
         {
             var resultado =
