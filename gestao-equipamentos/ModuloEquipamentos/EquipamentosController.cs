@@ -2,18 +2,13 @@
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
-    public interface IAdicionarEquipamento
-    {
-        public abstract void AdicionarEquipamento(EquipamentoModel equipamento);
-    }
-
     public interface IAtualizarEquipamento
     {
         void AtualizarEquipamento(EquipamentoModel equipamento);
     }
 
     public class EquipamentosController : BaseController,
-        IAdicionarEquipamento,
+        IAdicionar<EquipamentoModel>,
         IAtualizarEquipamento
     {
         private RepositorioEquipamentos _repositorioEquipamentos { get; set; }
@@ -47,7 +42,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
         }
 
         //Create - Update
-        public void AdicionarEquipamento(EquipamentoModel equipamento)
+        public void Adicionar(EquipamentoModel equipamento)
         {
             var resultado = equipamento.Validar();
             if (string.IsNullOrEmpty(resultado))

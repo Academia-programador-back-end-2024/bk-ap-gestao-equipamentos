@@ -1,14 +1,16 @@
-﻿namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
+﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+
+namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
     public partial class FormEquipamento : Form
     {
         private EquipamentoModel _equipamentoModel { get; set; }
-        private IAdicionarEquipamento _adicionarEquipamento { get; set; }
+        private IAdicionar<EquipamentoModel> _adicionarEquipamento { get; set; }
         private IAtualizarEquipamento _atualizarEquipamento { get; set; }
 
 
         public FormEquipamento(
-            IAdicionarEquipamento equipamentoControllerBase,
+            IAdicionar<EquipamentoModel> equipamentoControllerBase,
             IAtualizarEquipamento atualizarEquipamento,
             EquipamentoModel equipamentoModel)
         {
@@ -49,7 +51,7 @@
                 _equipamentoModel.NumeroDeSerie = txtNumeroSerie.Text;
                 if (_equipamentoModel.Indice == -1)
                 {
-                    _adicionarEquipamento.AdicionarEquipamento(_equipamentoModel);
+                    _adicionarEquipamento.Adicionar(_equipamentoModel);
                 }
                 else
                 {

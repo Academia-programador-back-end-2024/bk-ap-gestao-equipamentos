@@ -2,7 +2,8 @@
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 {
-    public class TipoDeEquipamentoController : BaseController
+    public class TipoDeEquipamentoController : BaseController,
+        IAdicionar<TipoDeEquipamentoModel>
     {
         private TipoDeEquipamentoRepositorio _tipoDeEquipamentoRepositorio { get; set; }
         public TipoDeEquipamentoController()
@@ -28,28 +29,10 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 
         public void MostrarViewFormTiposDeEquipamento(TipoDeEquipamentoModel? tipoDeequipamentoModel = null)
         {
-            FormTipoDeEquipamento formTipoDeEquipamento = new FormTipoDeEquipamento(tipoDeequipamentoModel, this);
+            FormTipoDeEquipamento formTipoDeEquipamento =
+                new FormTipoDeEquipamento(tipoDeequipamentoModel, this, this);
             formTipoDeEquipamento.ShowDialog();
         }
-
-        public void AdicionarTipoDeEquipamento(TipoDeEquipamentoModel tipoDeEquipamento)
-        {
-            var resultado = tipoDeEquipamento.Validar();
-            if (string.IsNullOrEmpty(resultado))
-            {
-                var tipoExistente = _tipoDeEquipamentoRepositorio.BusquePorNome(tipoDeEquipamento.Nome);
-
-                if (tipoExistente != null)
-                {
-                    resultado += "Já existe um tipo com este nome.";
-                    throw new AdicionarTipoDeEquipamentoException(resultado);
-                }
-                _tipoDeEquipamentoRepositorio.Adicionar(tipoDeEquipamento);
-                return;
-            }
-            throw new AdicionarTipoDeEquipamentoException(resultado);
-        }
-
 
         public List<TipoDeEquipamentoModel> ObterTiposDeEquipamentos()
         {
@@ -63,6 +46,24 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
             {
                 _tipoDeEquipamentoRepositorio.Adicionar(tipoDeEquipamentoModel);
 
+            }
+            throw new AdicionarTipoDeEquipamentoException(resultado);
+        }
+
+        public void Adicionar(TipoDeEquipamentoModel tipoDeEquipamento)
+        {
+            var resultado = tipoDeEquipamento.Validar();
+            if (string.IsNullOrEmpty(resultado))
+            {
+                var tipoExistente = _tipoDeEquipamentoRepositorio.BusquePorNome(tipoDeEquipamento.Nome);
+
+                if (tipoExistente != null)
+                {
+                    resultado += "Já existe um tipo com este nome.";
+                    throw new AdicionarTipoDeEquipamentoException(resultado);
+                }
+                _tipoDeEquipamentoRepositorio.Adicionar(tipoDeEquipamento);
+                return;
             }
             throw new AdicionarTipoDeEquipamentoException(resultado);
         }

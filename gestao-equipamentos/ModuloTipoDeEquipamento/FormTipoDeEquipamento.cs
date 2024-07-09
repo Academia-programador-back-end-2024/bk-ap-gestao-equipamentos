@@ -1,12 +1,17 @@
-﻿namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
+﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+
+namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 {
     public partial class FormTipoDeEquipamento : Form
     {
         TipoDeEquipamentoModel TipoDeEquipamentoModel { get; set; }
         TipoDeEquipamentoController TipoDeEquipamentoController { get; set; }
+
+        IAdicionar<TipoDeEquipamentoModel> _adicionar { get; set; }
         public FormTipoDeEquipamento(
             TipoDeEquipamentoModel tipoDeEquipamentoModel,
-            TipoDeEquipamentoController tipoDeEquipamentoController)
+            TipoDeEquipamentoController tipoDeEquipamentoController,
+            IAdicionar<TipoDeEquipamentoModel> adicionar)
         {
             InitializeComponent();
             if (tipoDeEquipamentoModel != null)
@@ -26,6 +31,7 @@
             toolStripStatusLabelErros.Text = "";
 
             TipoDeEquipamentoController = tipoDeEquipamentoController;
+            _adicionar = adicionar;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -38,7 +44,7 @@
             {
                 if (TipoDeEquipamentoModel.Indice == -1)
                 {
-                    TipoDeEquipamentoController.AdicionarTipoDeEquipamento(TipoDeEquipamentoModel);
+                    _adicionar.Adicionar(TipoDeEquipamentoModel);
                 }
                 else
                 {
