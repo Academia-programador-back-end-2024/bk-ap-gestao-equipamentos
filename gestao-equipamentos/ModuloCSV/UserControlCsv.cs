@@ -3,15 +3,25 @@
     public partial class UserControlCsv : UserControl
     {
         IImportar Importar { get; set; }
-        public UserControlCsv(IImportar importar)
+        IExportar Exportar { get; set; }
+        public UserControlCsv(IImportar importar, IExportar exportar)
         {
             InitializeComponent();
             Importar = importar;
+            Exportar = exportar;
         }
 
         private void Exportar_Click(object sender, EventArgs e)
         {
-
+            string caminhoCsv = string.Empty;
+            if (Exportar.Exportar(ref caminhoCsv))
+            {
+                MessageBox.Show($"Exportou com sucesso, o caminho do arquivo é :{caminhoCsv}", "Exportar", MessageBoxButtons.OK);
+            }
+            else
+            {
+                //TODO
+            }
         }
 
         private void btnImportar_Click(object sender, EventArgs e)

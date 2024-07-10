@@ -6,7 +6,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloCSV
 
     public interface IExportar
     {
-        void Exportar();
+        bool Exportar(ref string caminhoDoCsv);
     }
 
     public interface IImportar
@@ -23,17 +23,14 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloCSV
         const int PosDataDeFabricaco = 4;
         const int PosFabricante = 5;
         const int PosDataUltimaManutencao = 6;
-
+        const string CabecalhoCsv = "Número;Nome do Equipamento;Preço;Número de Série;Data de Fabricação;Fabricante;Data da Última Manutenção";
         IAdicionar<EquipamentoModel> Adicionar { get; set; }
-        public CsvController(IAdicionar<EquipamentoModel> adicionar)
+        List<EquipamentoModel> Equipamentos { get; set; }
+        public CsvController(IAdicionar<EquipamentoModel> adicionar, List<EquipamentoModel> equipamentoModels)
         {
-            base.View = new UserControlCsv(this);
+            base.View = new UserControlCsv(this, this);
             Adicionar = adicionar;
-        }
-
-        public void Exportar()
-        {
-            throw new NotImplementedException();
+            Equipamentos = equipamentoModels;
         }
 
         public bool Importar(string caminhoDoCsv)
@@ -73,6 +70,25 @@ Número;Nome do Equipamento;Preço;Número de Série;Data de Fabricação;Fabric
                 Adicionar.Adicionar(model);
             }
 
+            return true;
+        }
+
+        public bool Exportar(ref string caminhoDoCsv)
+        {
+            var conteudoArquivo = string.Empty;
+            caminhoDoCsv = "caminhoExportar.csv";
+            conteudoArquivo = CabecalhoCsv;
+
+            foreach (var equipamento in Equipamentos)
+            {
+                conteudoArquivo += "\r\n";
+                //TODO: 
+                var linhasCsv = string.Empty;
+
+                conteudoArquivo += linhasCsv;
+            }
+
+            File.WriteAllText(caminhoDoCsv, conteudoArquivo);
             return true;
         }
     }
