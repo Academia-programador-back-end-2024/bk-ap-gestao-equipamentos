@@ -11,6 +11,9 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
         //Singleton.
         //Padrão de projeto de criação
         //Uma classe que é singleton, ela só pode ter uma instancia dela mesmo
+        //Contrutor privado
+        //Um objeto statico privado
+        //Uma propriedade static somente com get, poderia ser também um metodo
 
         private static TipoDeEquipamentoRepositorio TipoDeEquipamentoRepositorioSingleton { get; set; }
         public static TipoDeEquipamentoRepositorio Instancia

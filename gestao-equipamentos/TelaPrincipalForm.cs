@@ -16,7 +16,9 @@ namespace GestaoEquipamentos.WinFormsApp
             InitializeComponent();
             equipamentosController = new EquipamentosController();
             tipoDeEquipamentoController = new TipoDeEquipamentoController();
-            csvController = new CsvController(equipamentosController);
+            csvController = new CsvController(
+                equipamentosController,
+                equipamentosController.ObterEquipamentos());
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -33,6 +35,7 @@ namespace GestaoEquipamentos.WinFormsApp
         {
             this.panelListControl.Controls.Clear();
             this.panelListControl.Controls.Add(equipamentosController.View);
+            equipamentosController.View.Atualizar();
         }
 
         private void equipamentosToolStripMenuItem_Click(object sender, EventArgs e)

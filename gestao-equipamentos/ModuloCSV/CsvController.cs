@@ -24,9 +24,13 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloCSV
         const int PosFabricante = 5;
         const int PosDataUltimaManutencao = 6;
         const string CabecalhoCsv = "Número;Nome do Equipamento;Preço;Número de Série;Data de Fabricação;Fabricante;Data da Última Manutenção";
+        const string DelimitadorCsv = ";";
+
         IAdicionar<EquipamentoModel> Adicionar { get; set; }
         List<EquipamentoModel> Equipamentos { get; set; }
-        public CsvController(IAdicionar<EquipamentoModel> adicionar, List<EquipamentoModel> equipamentoModels)
+        public CsvController(
+            IAdicionar<EquipamentoModel> adicionar,
+            List<EquipamentoModel> equipamentoModels)
         {
             base.View = new UserControlCsv(this, this);
             Adicionar = adicionar;
@@ -56,18 +60,19 @@ Número;Nome do Equipamento;Preço;Número de Série;Data de Fabricação;Fabric
             string[] linhasCsv = conteudoArquivo.Split("\r\n");
             for (int i = 1; i < linhasCsv.Length; i++)
             {
-                string[] propriedadesEquipamento = linhasCsv[i].Split(";");
-
-                EquipamentoModel model = new EquipamentoModel();
-                model.Numero = int.Parse(propriedadesEquipamento[PosicaoNumero]);
-                model.Nome = propriedadesEquipamento[PosNome];
-                model.Preco = decimal.Parse(propriedadesEquipamento[PosPreco]);
-                model.NumeroDeSerie = propriedadesEquipamento[PosNumeroDeSerie];
-                model.DataDeFabricacao = DateTime.Parse(propriedadesEquipamento[PosDataDeFabricaco]);
-                model.Fabricante = propriedadesEquipamento[PosFabricante];
-                model.DataUltimaManutencao = DateTime.Parse(propriedadesEquipamento[PosDataUltimaManutencao]);
-
-                Adicionar.Adicionar(model);
+                string[] propriedadesEquipamento = linhasCsv[i].Split(DelimitadorCsv);
+                if (propriedadesEquipamento.Length == 7)
+                {
+                    EquipamentoModel equipamento = new EquipamentoModel();
+                    equipamento.Numero = int.Parse(propriedadesEquipamento[PosicaoNumero]);
+                    equipamento.Nome = propriedadesEquipamento[PosNome];
+                    equipamento.Preco = decimal.Parse(propriedadesEquipamento[PosPreco]);
+                    equipamento.NumeroDeSerie = propriedadesEquipamento[PosNumeroDeSerie];
+                    equipamento.DataDeFabricacao = DateTime.Parse(propriedadesEquipamento[PosDataDeFabricaco]);
+                    equipamento.Fabricante = propriedadesEquipamento[PosFabricante];
+                    equipamento.DataUltimaManutencao = DateTime.Parse(propriedadesEquipamento[PosDataUltimaManutencao]);
+                    Adicionar.Adicionar(equipamento);
+                }
             }
 
             return true;
@@ -76,16 +81,22 @@ Número;Nome do Equipamento;Preço;Número de Série;Data de Fabricação;Fabric
         public bool Exportar(ref string caminhoDoCsv)
         {
             var conteudoArquivo = string.Empty;
-            caminhoDoCsv = "caminhoExportar.csv";
+            caminhoDoCsv = "caminho-exportar.csv";
             conteudoArquivo = CabecalhoCsv;
 
             foreach (var equipamento in Equipamentos)
             {
                 conteudoArquivo += "\r\n";
-                //TODO: 
-                var linhasCsv = string.Empty;
+                var linhaCsv =
+                    $"{equipamento.Numero}{DelimitadorCsv}" +
+                    $"{equipamento.Nome}{DelimitadorCsv}" +
+                    $"{equipamento.Preco}{DelimitadorCsv}" +
+                    $"{equipamento.NumeroDeSerie}{DelimitadorCsv}" +
+                    $"{equipamento.DataDeFabricacao}{DelimitadorCsv}" +
+                    $"{equipamento.Fabricante}{DelimitadorCsv}" +
+                    $"{equipamento.DataUltimaManutencao}";
 
-                conteudoArquivo += linhasCsv;
+                conteudoArquivo += linhaCsv;
             }
 
             File.WriteAllText(caminhoDoCsv, conteudoArquivo);

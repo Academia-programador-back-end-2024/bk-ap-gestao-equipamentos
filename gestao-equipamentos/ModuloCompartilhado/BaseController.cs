@@ -2,6 +2,11 @@
 {
     public abstract class BaseController
     {
-        public virtual UserControl View { get; set; }
+        public virtual ViewUserControl View { get; set; }
+    }
+
+    public abstract class ViewUserControl : UserControl
+    {
+        public abstract void Atualizar();
     }
 }

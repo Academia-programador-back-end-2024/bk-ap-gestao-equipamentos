@@ -1,6 +1,8 @@
-﻿namespace GestaoEquipamentos.WinFormsApp.ModuloCSV
+﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+
+namespace GestaoEquipamentos.WinFormsApp.ModuloCSV
 {
-    public partial class UserControlCsv : UserControl
+    public partial class UserControlCsv : ViewUserControl
     {
         IImportar Importar { get; set; }
         IExportar Exportar { get; set; }
@@ -53,6 +55,11 @@
             }
 
             //MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+        }
+
+        public override void Atualizar()
+        {
+            //Ignorar
         }
     }
 }

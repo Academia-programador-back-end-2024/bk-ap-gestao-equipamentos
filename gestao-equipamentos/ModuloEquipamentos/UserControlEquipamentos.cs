@@ -1,16 +1,18 @@
-﻿namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
+﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+
+namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
-    public partial class UserControlEquipamentos : UserControl
+    public partial class UserControlEquipamentos : ViewUserControl
     {
         private EquipamentosController equipamentosController;
         public UserControlEquipamentos(EquipamentosController equipamentosController)
         {
             InitializeComponent();
             this.equipamentosController = equipamentosController;
-            AtualizarGrid();
+            Atualizar();
         }
 
-        private void AtualizarGrid()
+        public override void Atualizar()
         {
             this.dataGridView1.DataSource = null;
             this.dataGridView1.DataSource = equipamentosController.ObterEquipamentos();
@@ -19,7 +21,7 @@
         private void adicionarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             equipamentosController.MostrarViewFormEquipamento();
-            AtualizarGrid();
+            Atualizar();
         }
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -27,7 +29,7 @@
             if (dataGridView1.SelectedRows[0].DataBoundItem is EquipamentoModel equipamentoModel)
             {
                 equipamentosController.MostrarViewFormEquipamento(equipamentoModel);
-                AtualizarGrid();
+                Atualizar();
             }
         }
 
@@ -36,7 +38,7 @@
             if (dataGridView1.SelectedRows[0].DataBoundItem is EquipamentoModel equipamentoModel)
             {
                 equipamentosController.MostrarViewFormDeleteEquipamento(equipamentoModel);
-                AtualizarGrid();
+                Atualizar();
             }
         }
     }
