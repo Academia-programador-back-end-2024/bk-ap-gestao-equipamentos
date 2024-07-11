@@ -5,8 +5,15 @@
         public virtual ViewUserControl View { get; set; }
     }
 
-    public abstract class ViewUserControl : UserControl
+    public class ViewUserControl : UserControl, Iview
     {
-        public abstract void Atualizar();
+        public virtual void Atualizar()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public interface Iview
+    {
+        void Atualizar();
     }
 }

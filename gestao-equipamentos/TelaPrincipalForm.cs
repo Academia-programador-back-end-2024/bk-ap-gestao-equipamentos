@@ -1,5 +1,6 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCSV;
 using GestaoEquipamentos.WinFormsApp.ModuloEquipamentos;
+using GestaoEquipamentos.WinFormsApp.ModuloFabricantes;
 using GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento;
 
 namespace GestaoEquipamentos.WinFormsApp
@@ -9,6 +10,7 @@ namespace GestaoEquipamentos.WinFormsApp
         private EquipamentosController equipamentosController { get; set; }
         private TipoDeEquipamentoController tipoDeEquipamentoController { get; set; }
 
+        private FabricanteController fabricanteController { get; set; }
         private CsvController csvController { get; set; }
 
         public TelaPrincipalForm()
@@ -16,6 +18,7 @@ namespace GestaoEquipamentos.WinFormsApp
             InitializeComponent();
             equipamentosController = new EquipamentosController();
             tipoDeEquipamentoController = new TipoDeEquipamentoController();
+            fabricanteController = new FabricanteController();
             csvController = new CsvController(
                 equipamentosController,
                 equipamentosController.ObterEquipamentos());
@@ -58,6 +61,12 @@ namespace GestaoEquipamentos.WinFormsApp
         {
             this.panelListControl.Controls.Clear();
             this.panelListControl.Controls.Add(csvController.View);
+        }
+
+        private void btnFabricantes_Click(object sender, EventArgs e)
+        {
+            this.panelListControl.Controls.Clear();
+            this.panelListControl.Controls.Add(fabricanteController.View);
         }
     }
 }

@@ -37,8 +37,9 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             buttonEquipamentos = new Button();
             btnTipo = new Button();
-            panelListControl = new Panel();
             btnCSV = new Button();
+            panelListControl = new Panel();
+            btnFabricantes = new Button();
             tableLayoutPanel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -111,6 +112,7 @@
             flowLayoutPanel1.Controls.Add(buttonEquipamentos);
             flowLayoutPanel1.Controls.Add(btnTipo);
             flowLayoutPanel1.Controls.Add(btnCSV);
+            flowLayoutPanel1.Controls.Add(btnFabricantes);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(0, 0);
@@ -144,14 +146,6 @@
             btnTipo.UseVisualStyleBackColor = true;
             btnTipo.Click += btnTipo_Click;
             // 
-            // panelListControl
-            // 
-            panelListControl.Dock = DockStyle.Fill;
-            panelListControl.Location = new Point(0, 0);
-            panelListControl.Name = "panelListControl";
-            panelListControl.Size = new Size(688, 389);
-            panelListControl.TabIndex = 0;
-            // 
             // btnCSV
             // 
             btnCSV.Image = (Image)resources.GetObject("btnCSV.Image");
@@ -164,6 +158,27 @@
             btnCSV.TextAlign = ContentAlignment.MiddleRight;
             btnCSV.UseVisualStyleBackColor = true;
             btnCSV.Click += btnCSV_Click;
+            // 
+            // panelListControl
+            // 
+            panelListControl.Dock = DockStyle.Fill;
+            panelListControl.Location = new Point(0, 0);
+            panelListControl.Name = "panelListControl";
+            panelListControl.Size = new Size(688, 389);
+            panelListControl.TabIndex = 0;
+            // 
+            // btnFabricantes
+            // 
+            btnFabricantes.Image = (Image)resources.GetObject("btnFabricantes.Image");
+            btnFabricantes.ImageAlign = ContentAlignment.MiddleLeft;
+            btnFabricantes.Location = new Point(3, 249);
+            btnFabricantes.Name = "btnFabricantes";
+            btnFabricantes.Size = new Size(163, 76);
+            btnFabricantes.TabIndex = 3;
+            btnFabricantes.Text = "Fabricantes";
+            btnFabricantes.TextAlign = ContentAlignment.MiddleRight;
+            btnFabricantes.UseVisualStyleBackColor = true;
+            btnFabricantes.Click += btnFabricantes_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -202,5 +217,6 @@
         private Panel panelListControl;
         private Button btnTipo;
         private Button btnCSV;
+        private Button btnFabricantes;
     }
 }
