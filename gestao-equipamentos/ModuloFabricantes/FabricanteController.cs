@@ -12,16 +12,16 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
     public class FabricanteController : BaseController, IAdicionar<FabricanteModel>, IAtualizar<FabricanteModel>
     {
         
-        private RepositorioFabricante RepositorioFabricante { get; set; }
+        private RepositorioFabricante _repositorioFabricante { get; set; }
         public FabricanteController()
         {
-            RepositorioFabricante = new RepositorioFabricante();
+            _repositorioFabricante = new RepositorioFabricante();
             base.View = new UserControlFabricantes(this);
         }
 
         public List<FabricanteModel> ObterFabricantes()
         {
-            return RepositorioFabricante.ObterTodos();
+            return _repositorioFabricante.ObterTodos();
         }
         public void MostrarViewFormFabricante(FabricanteModel fabricanteModel = null)
         {
@@ -35,12 +35,12 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
             var resultado = fabricante.Validar();
             if (string.IsNullOrEmpty(resultado))
             {
-                if (RepositorioFabricante.VerificarPorNome(fabricante.Nome))
+                if (_repositorioFabricante.VerificarPorNome(fabricante.Nome))
                 {
                     resultado = "Já existe fabricante com este nome cadastrado! ";
                     throw new FabricanteException(resultado);
                 }
-                RepositorioFabricante.Adicionar(fabricante);
+                _repositorioFabricante.Adicionar(fabricante);
                 return;
             }
             throw new FabricanteException(resultado);
@@ -51,15 +51,30 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
             var resultado = fabricanteModel.Validar();
             if (string.IsNullOrEmpty(resultado))
             {
-                if (RepositorioFabricante.VerificarPorNome(fabricanteModel.Nome))
+                if (_repositorioFabricante.VerificarPorNome(fabricanteModel.Nome))
                 {
                     resultado = "Já existe fabricante com este nome cadastrado! ";
                     throw new FabricanteException(resultado);
                 }
-                RepositorioFabricante.Atualizar(fabricanteModel);
+                _repositorioFabricante.Atualizar(fabricanteModel);
                 return;
             }
             throw new AdicionarTipoDeEquipamentoException(resultado);
+        }
+
+        public void MostrarViewFormDeleteFabricante(FabricanteModel fabricanteModel)
+        {
+            var resultado =
+            MessageBox.
+            Show(
+                 $"Você confirma a remoção do fabricante {fabricanteModel.Nome}",
+                 "Remover fabricante",
+                 MessageBoxButtons.YesNoCancel);
+
+            if (DialogResult.Yes == resultado)
+            {
+                _repositorioFabricante.Excluir(fabricanteModel);
+            }
         }
     }
 
