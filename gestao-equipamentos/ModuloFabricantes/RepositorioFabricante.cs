@@ -23,5 +23,17 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
             });
                 
         }
+
+        public bool VerificarPorNome(string nome)
+        {
+            foreach (var fabricante in ItensRepositorio)
+            {
+                if (fabricante.Nome == nome)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

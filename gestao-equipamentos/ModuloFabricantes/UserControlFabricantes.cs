@@ -26,8 +26,12 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
         {
             this.listBoxTipos.DataSource = null;
             this.listBoxTipos.DataSource = fabricanteController.ObterFabricantes();
-
         }
 
+        private void adicionarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fabricanteController.MostrarViewFormFabricante();
+            Atualizar();
+        }
     }
 }
