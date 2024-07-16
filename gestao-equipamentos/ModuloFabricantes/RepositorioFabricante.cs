@@ -17,6 +17,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
         {
             base.ItensRepositorio.Add(new FabricanteModel()
             {
+                Indice = Indice(),
                 Nome = "Samsung",
                 Data = DateTime.Now,
                 Fornecedor = "Academia do programador"

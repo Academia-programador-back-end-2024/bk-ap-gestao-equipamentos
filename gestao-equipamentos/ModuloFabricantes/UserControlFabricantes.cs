@@ -33,5 +33,14 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
             fabricanteController.MostrarViewFormFabricante();
             Atualizar();
         }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listBoxTipos.SelectedItems[0] is FabricanteModel fabricanteModel)
+            {
+                fabricanteController.MostrarViewFormFabricante(fabricanteModel);
+                Atualizar();
+            }
+        }
     }
 }

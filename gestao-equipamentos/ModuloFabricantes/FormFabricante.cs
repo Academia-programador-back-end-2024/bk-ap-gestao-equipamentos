@@ -1,4 +1,5 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
+using GestaoEquipamentos.WinFormsApp.ModuloEquipamentos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,30 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
     public partial class FormFabricante : Form
     {
         IAdicionar<FabricanteModel> _adicionar { get; set; }
-        private FabricanteModel fabricanteModel;
-        public FormFabricante(IAdicionar<FabricanteModel> adicionar)
+
+        IAtualizar<FabricanteModel> _atualizar { get; set; }
+
+        private FabricanteModel _fabricanteModel;
+        public FormFabricante(IAdicionar<FabricanteModel> adicionar, IAtualizar<FabricanteModel> atualizar, FabricanteModel fabricanteModel = null)
         {
             InitializeComponent();
-            fabricanteModel = new FabricanteModel();
             _adicionar = adicionar;
+            _atualizar = atualizar;
+            if (fabricanteModel != null) 
+            {
+                _fabricanteModel = new FabricanteModel();
+                txtFornecedor.Text = fabricanteModel.Fornecedor;
+                txtNome.Text = fabricanteModel.Nome;
+                dateTimePickerCadastro.Value = fabricanteModel.Data;
+
+                _fabricanteModel.Indice = fabricanteModel.Indice;
+                btnSalvar.Text = "Atualizar";
+            }else
+            {
+                _fabricanteModel = new FabricanteModel();
+                btnSalvar.Text = "Atualizar";
+            }
+
         }
 
         private void FormFabricante_Load(object sender, EventArgs e)
@@ -29,13 +48,21 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            fabricanteModel.Nome = this.txtNome.Text;
-            fabricanteModel.Fornecedor = this.txtFornecedor.Text;
-            fabricanteModel.Data = this.dateTimePickerCadastro.Value;
+            _fabricanteModel.Nome = this.txtNome.Text;
+            _fabricanteModel.Fornecedor = this.txtFornecedor.Text;
+            _fabricanteModel.Data = this.dateTimePickerCadastro.Value;
 
             try
             {
-                _adicionar.Adicionar(fabricanteModel);
+                if (_fabricanteModel.Indice == -1)
+                {
+                    _adicionar.Adicionar(_fabricanteModel);
+                }
+                else
+                {
+                    _atualizar.Atualizar(_fabricanteModel);
+
+                }
                 //Se deu certo
                 this.DialogResult = DialogResult.OK;
                 this.Close();

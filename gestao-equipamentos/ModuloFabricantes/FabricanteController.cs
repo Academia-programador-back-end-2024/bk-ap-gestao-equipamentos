@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
 {
 
-    public class FabricanteController : BaseController, IAdicionar<FabricanteModel>
+    public class FabricanteController : BaseController, IAdicionar<FabricanteModel>, IAtualizar<FabricanteModel>
     {
         
         private RepositorioFabricante RepositorioFabricante { get; set; }
@@ -23,10 +23,10 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
         {
             return RepositorioFabricante.ObterTodos();
         }
-        public void MostrarViewFormFabricante()
+        public void MostrarViewFormFabricante(FabricanteModel fabricanteModel = null)
         {
             FormFabricante formFabricante =
-                new FormFabricante(this);
+                new FormFabricante(this, this, fabricanteModel);
             formFabricante.ShowDialog();
         }
 
@@ -44,6 +44,22 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
                 return;
             }
             throw new FabricanteException(resultado);
+        }
+
+        public void Atualizar (FabricanteModel fabricanteModel)
+        {
+            var resultado = fabricanteModel.Validar();
+            if (string.IsNullOrEmpty(resultado))
+            {
+                if (RepositorioFabricante.VerificarPorNome(fabricanteModel.Nome))
+                {
+                    resultado = "Já existe fabricante com este nome cadastrado! ";
+                    throw new FabricanteException(resultado);
+                }
+                RepositorioFabricante.Atualizar(fabricanteModel);
+                return;
+            }
+            throw new AdicionarTipoDeEquipamentoException(resultado);
         }
     }
 

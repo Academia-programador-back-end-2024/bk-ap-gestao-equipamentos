@@ -6,4 +6,9 @@
     {
         void Adicionar(T objeto);
     }
+
+    public interface IAtualizar<T>
+    {
+        void Atualizar(T objeto);
+    }
 }
