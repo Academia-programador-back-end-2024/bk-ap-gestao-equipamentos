@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento
 {
-    public class TipoDeEquipamentoRepositorio : BaseRepositorio<TipoDeEquipamentoModel>
+    public class TipoDeEquipamentoRepositorio : BaseRepositorioEmMemoria<TipoDeEquipamentoModel>
     {
         const string nomeArquivoTipos = "tipos-de-equipamento.json";
         const string diretorioTipo = "tipo";

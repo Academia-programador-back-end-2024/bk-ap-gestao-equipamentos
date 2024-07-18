@@ -1,12 +1,12 @@
 ﻿namespace GestaoEquipamentos.WinFormsApp.ModuloCompartilhado
 {
-    public abstract class BaseRepositorio<T> where T : BaseModel
+    public abstract class BaseRepositorioEmMemoria<T> : IRepositorio<T> where T : BaseModel
     {
         protected List<T> ItensRepositorio { get; set; }
 
         private T BaseModel { get; set; }
 
-        protected BaseRepositorio()
+        protected BaseRepositorioEmMemoria()
         {
             ItensRepositorio = new List<T>();
             this.Semear();

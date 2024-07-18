@@ -1,27 +1,29 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
 using GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
 {
 
     public class FabricanteController : BaseController, IAdicionar<FabricanteModel>, IAtualizar<FabricanteModel>
     {
-        
-        private RepositorioFabricante _repositorioFabricante { get; set; }
-        public FabricanteController()
+
+        private IRepositorio<FabricanteModel> _repositorio { get; set; }
+        private IRepositorioFabricante _repositorioFabricante { get; set; }
+
+        public FabricanteController(
+            IRepositorio<FabricanteModel> repositorio,
+            IRepositorioFabricante repositorioFabricante
+            )
         {
-            _repositorioFabricante = new RepositorioFabricante();
+            _repositorio = repositorio;
+            _repositorioFabricante = repositorioFabricante;
+
             base.View = new UserControlFabricantes(this);
         }
 
         public List<FabricanteModel> ObterFabricantes()
         {
-            return _repositorioFabricante.ObterTodos();
+            return _repositorio.ObterTodos();
         }
         public void MostrarViewFormFabricante(FabricanteModel fabricanteModel = null)
         {
@@ -40,13 +42,13 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
                     resultado = "Já existe fabricante com este nome cadastrado! ";
                     throw new FabricanteException(resultado);
                 }
-                _repositorioFabricante.Adicionar(fabricante);
+                _repositorio.Adicionar(fabricante);
                 return;
             }
             throw new FabricanteException(resultado);
         }
 
-        public void Atualizar (FabricanteModel fabricanteModel)
+        public void Atualizar(FabricanteModel fabricanteModel)
         {
             var resultado = fabricanteModel.Validar();
             if (string.IsNullOrEmpty(resultado))
@@ -56,7 +58,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
                     resultado = "Já existe fabricante com este nome cadastrado! ";
                     throw new FabricanteException(resultado);
                 }
-                _repositorioFabricante.Atualizar(fabricanteModel);
+                _repositorio.Atualizar(fabricanteModel);
                 return;
             }
             throw new AdicionarTipoDeEquipamentoException(resultado);
@@ -73,14 +75,14 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
 
             if (DialogResult.Yes == resultado)
             {
-                _repositorioFabricante.Excluir(fabricanteModel);
+                _repositorio.Excluir(fabricanteModel);
             }
         }
     }
 
     public class FabricanteException : Exception
     {
-        public FabricanteException(string erro) : base(erro) 
+        public FabricanteException(string erro) : base(erro)
         {
         }
     }

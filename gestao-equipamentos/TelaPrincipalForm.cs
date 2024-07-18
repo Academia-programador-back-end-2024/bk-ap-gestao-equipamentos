@@ -13,12 +13,22 @@ namespace GestaoEquipamentos.WinFormsApp
         private FabricanteController fabricanteController { get; set; }
         private CsvController csvController { get; set; }
 
+
         public TelaPrincipalForm()
         {
             InitializeComponent();
             equipamentosController = new EquipamentosController();
             tipoDeEquipamentoController = new TipoDeEquipamentoController();
-            fabricanteController = new FabricanteController();
+
+            var _repositorioFabricanteSemContrato = new RepositorioFabricanteEmArquivo();
+
+            //SOL "I" D 
+            //IOC
+
+            fabricanteController = new FabricanteController(
+                _repositorioFabricanteSemContrato,
+                _repositorioFabricanteSemContrato);
+
             csvController = new CsvController(
                 equipamentosController,
                 equipamentosController.ObterEquipamentos());

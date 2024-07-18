@@ -1,17 +1,15 @@
 ﻿using GestaoEquipamentos.WinFormsApp.ModuloCompartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
 {
-    public class RepositorioFabricante : BaseRepositorio<FabricanteModel>
+    public class RepositorioFabricanteEmMemoria :
+        BaseRepositorioEmMemoria<FabricanteModel>,
+        IRepositorio<FabricanteModel>,
+        IRepositorioFabricante
     {
-        public RepositorioFabricante()
+        public RepositorioFabricanteEmMemoria()
         {
-            
+
         }
         public override void Semear()
         {
@@ -22,7 +20,7 @@ namespace GestaoEquipamentos.WinFormsApp.ModuloFabricantes
                 Data = DateTime.Now,
                 Fornecedor = "Academia do programador"
             });
-                
+
         }
 
         public bool VerificarPorNome(string nome)

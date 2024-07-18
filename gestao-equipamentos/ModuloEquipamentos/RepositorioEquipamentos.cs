@@ -2,7 +2,7 @@
 
 namespace GestaoEquipamentos.WinFormsApp.ModuloEquipamentos
 {
-    public class RepositorioEquipamentos : BaseRepositorio<EquipamentoModel>
+    public class RepositorioEquipamentos : BaseRepositorioEmMemoria<EquipamentoModel>
     {
         public RepositorioEquipamentos()
         {
