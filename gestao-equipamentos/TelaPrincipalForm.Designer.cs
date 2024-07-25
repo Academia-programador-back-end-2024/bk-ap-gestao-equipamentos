@@ -38,8 +38,9 @@
             buttonEquipamentos = new Button();
             btnTipo = new Button();
             btnCSV = new Button();
-            panelListControl = new Panel();
             btnFabricantes = new Button();
+            panelListControl = new Panel();
+            button1 = new Button();
             tableLayoutPanel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -61,9 +62,8 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.3134327F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 87.68657F));
-            tableLayoutPanel1.Size = new Size(884, 450);
+            tableLayoutPanel1.Size = new Size(884, 488);
             tableLayoutPanel1.TabIndex = 0;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // menuStrip1
             // 
@@ -71,7 +71,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(884, 55);
+            menuStrip1.Size = new Size(884, 60);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -79,7 +79,7 @@
             // 
             menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { equipamentosToolStripMenuItem });
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            menuToolStripMenuItem.Size = new Size(50, 51);
+            menuToolStripMenuItem.Size = new Size(50, 56);
             menuToolStripMenuItem.Text = "Menu";
             // 
             // equipamentosToolStripMenuItem
@@ -93,7 +93,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(3, 58);
+            splitContainer1.Location = new Point(3, 63);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -103,7 +103,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(panelListControl);
-            splitContainer1.Size = new Size(878, 389);
+            splitContainer1.Size = new Size(878, 422);
             splitContainer1.SplitterDistance = 186;
             splitContainer1.TabIndex = 1;
             // 
@@ -113,11 +113,12 @@
             flowLayoutPanel1.Controls.Add(btnTipo);
             flowLayoutPanel1.Controls.Add(btnCSV);
             flowLayoutPanel1.Controls.Add(btnFabricantes);
+            flowLayoutPanel1.Controls.Add(button1);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(186, 389);
+            flowLayoutPanel1.Size = new Size(186, 422);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // buttonEquipamentos
@@ -159,14 +160,6 @@
             btnCSV.UseVisualStyleBackColor = true;
             btnCSV.Click += btnCSV_Click;
             // 
-            // panelListControl
-            // 
-            panelListControl.Dock = DockStyle.Fill;
-            panelListControl.Location = new Point(0, 0);
-            panelListControl.Name = "panelListControl";
-            panelListControl.Size = new Size(688, 389);
-            panelListControl.TabIndex = 0;
-            // 
             // btnFabricantes
             // 
             btnFabricantes.Image = (Image)resources.GetObject("btnFabricantes.Image");
@@ -180,11 +173,32 @@
             btnFabricantes.UseVisualStyleBackColor = true;
             btnFabricantes.Click += btnFabricantes_Click;
             // 
+            // panelListControl
+            // 
+            panelListControl.Dock = DockStyle.Fill;
+            panelListControl.Location = new Point(0, 0);
+            panelListControl.Name = "panelListControl";
+            panelListControl.Size = new Size(688, 422);
+            panelListControl.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(3, 331);
+            button1.Name = "button1";
+            button1.Size = new Size(163, 76);
+            button1.TabIndex = 4;
+            button1.Text = "Clientes";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnClientes_Click;
+            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 450);
+            ClientSize = new Size(884, 488);
             Controls.Add(tableLayoutPanel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
@@ -192,7 +206,6 @@
             Name = "TelaPrincipalForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaPrincipalForm";
-            FormClosing += TelaPrincipalForm_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -218,5 +231,6 @@
         private Button btnTipo;
         private Button btnCSV;
         private Button btnFabricantes;
+        private Button button1;
     }
 }

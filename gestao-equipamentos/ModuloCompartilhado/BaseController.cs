@@ -5,15 +5,11 @@
         public virtual ViewUserControl View { get; set; }
     }
 
-    public class ViewUserControl : UserControl, Iview
+    public class ViewUserControl : UserControl
     {
         public virtual void Atualizar()
         {
-            throw new NotImplementedException();
+
         }
-    }
-    public interface Iview
-    {
-        void Atualizar();
     }
 }

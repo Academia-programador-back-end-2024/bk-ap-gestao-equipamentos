@@ -1,4 +1,5 @@
-﻿using GestaoEquipamentos.WinFormsApp.ModuloCSV;
+﻿using GestaoEquipamentos.WinFormsApp.ModuloClientes;
+using GestaoEquipamentos.WinFormsApp.ModuloCSV;
 using GestaoEquipamentos.WinFormsApp.ModuloEquipamentos;
 using GestaoEquipamentos.WinFormsApp.ModuloFabricantes;
 using GestaoEquipamentos.WinFormsApp.ModuloTipoDeEquipamento;
@@ -7,36 +8,33 @@ namespace GestaoEquipamentos.WinFormsApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        private EquipamentosController equipamentosController { get; set; }
-        private TipoDeEquipamentoController tipoDeEquipamentoController { get; set; }
-
-        private FabricanteController fabricanteController { get; set; }
-        private CsvController csvController { get; set; }
+        private EquipamentosController _equipamentosController { get; set; }
+        private TipoDeEquipamentoController _tipoDeEquipamentoController { get; set; }
+        private FabricanteController _fabricanteController { get; set; }
+        private CsvController _csvController { get; set; }
+        private ClientesController _clientesController { get; set; }
 
 
         public TelaPrincipalForm()
         {
             InitializeComponent();
-            equipamentosController = new EquipamentosController();
-            tipoDeEquipamentoController = new TipoDeEquipamentoController();
+            _equipamentosController = new EquipamentosController();
+            _tipoDeEquipamentoController = new TipoDeEquipamentoController();
 
             var _repositorioFabricanteSemContrato = new RepositorioFabricanteEmArquivo();
 
             //SOL "I" D 
             //IOC
 
-            fabricanteController = new FabricanteController(
+            _fabricanteController = new FabricanteController(
                 _repositorioFabricanteSemContrato,
                 _repositorioFabricanteSemContrato);
 
-            csvController = new CsvController(
-                equipamentosController,
-                equipamentosController.ObterEquipamentos());
-        }
+            _csvController = new CsvController(
+                _equipamentosController,
+                _equipamentosController.ObterEquipamentos());
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            _clientesController = new ClientesController();
         }
 
         private void buttonEquipamentos_Click(object sender, EventArgs e)
@@ -47,8 +45,8 @@ namespace GestaoEquipamentos.WinFormsApp
         private void Equipamentos()
         {
             this.panelListControl.Controls.Clear();
-            this.panelListControl.Controls.Add(equipamentosController.View);
-            equipamentosController.View.Atualizar();
+            this.panelListControl.Controls.Add(_equipamentosController.View);
+            _equipamentosController.View.Atualizar();
         }
 
         private void equipamentosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,24 +57,25 @@ namespace GestaoEquipamentos.WinFormsApp
         private void btnTipo_Click(object sender, EventArgs e)
         {
             this.panelListControl.Controls.Clear();
-            this.panelListControl.Controls.Add(tipoDeEquipamentoController.View);
-        }
-
-        private void TelaPrincipalForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            GC.Collect();
+            this.panelListControl.Controls.Add(_tipoDeEquipamentoController.View);
         }
 
         private void btnCSV_Click(object sender, EventArgs e)
         {
             this.panelListControl.Controls.Clear();
-            this.panelListControl.Controls.Add(csvController.View);
+            this.panelListControl.Controls.Add(_csvController.View);
         }
 
         private void btnFabricantes_Click(object sender, EventArgs e)
         {
             this.panelListControl.Controls.Clear();
-            this.panelListControl.Controls.Add(fabricanteController.View);
+            this.panelListControl.Controls.Add(_fabricanteController.View);
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            this.panelListControl.Controls.Clear();
+            this.panelListControl.Controls.Add(_clientesController.View);
         }
     }
 }
